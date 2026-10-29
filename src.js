@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 
-const config = window.MD MART_CONFIG || {};
+const config = window.MD_MART_CONFIG || {};
 const configured = config.supabaseUrl?.startsWith("https://") &&
   !config.supabaseUrl.includes("YOUR-PROJECT") &&
   config.supabaseAnonKey && !config.supabaseAnonKey.includes("YOUR_SUPABASE");
