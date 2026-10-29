@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#131921">
+  <meta name="description" content="MD MART — discover great products and sell to customers across India.">
+  <title>MD MART — Buy & Sell Online</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#" aria-label="MD MART home">market<span>nest</span><small>BUY SMART. SELL EASY.</small></a>
+  <form class="search" id="searchForm"><select id="searchCategory" aria-label="Category"><option value="All">All categories</option><option>Electronics</option><option>Home</option><option>Fashion</option><option>Beauty</option><option>Sports</option><option>Other</option></select><input id="searchInput" placeholder="Search products, brands and more..." aria-label="Search products"><button aria-label="Search">⌕</button></form>
+  <button class="headlink" id="authOpen">Account <b id="accountLabel">Sign in</b></button>
+  <button class="headlink" id="ordersOpen">Orders</button>
+  <button class="headlink carthead" id="cartOpen">🛒 Cart <b id="cartCount">0</b></button>
+</header>
+<nav class="subnav"><button data-category="All">☰ All products</button><button data-category="Electronics">Electronics</button><button data-category="Home">Home & Kitchen</button><button data-category="Fashion">Fashion</button><button data-category="Beauty">Beauty</button><button data-category="Sports">Sports</button><button id="sellOpen">＋ Sell on MD MART</button></nav>
+<section class="hero"><div><span class="eyebrow">A marketplace made for everyone</span><h1>Good finds.<br>Great prices.</h1><p>Discover everyday essentials, find something special, or start selling to customers across India.</p><button class="primary" id="exploreBtn">Explore products →</button></div><div class="hero-art" aria-hidden="true">🛍️ 📦</div></section>
+<main class="wrap" id="shop">
+  <div class="section-head"><div><h2 id="sectionTitle">Popular right now</h2><p id="resultText">Explore products from the MD MART community.</p></div><button class="primary" id="sellOpen2">＋ List your product</button></div>
+  <div class="chips" id="chips"><button class="chip active" data-category="All">All</button><button class="chip" data-category="Electronics">Electronics</button><button class="chip" data-category="Home">Home & Kitchen</button><button class="chip" data-category="Fashion">Fashion</button><button class="chip" data-category="Beauty">Beauty</button><button class="chip" data-category="Sports">Sports</button><button class="chip" data-category="Other">Other</button></div>
+  <div class="notice" id="setupNotice" hidden><b>Setup needed:</b> add your Supabase project URL and anon/publishable key to <code>public/config.js</code>, then run the SQL setup in the README.</div>
+  <section class="grid" id="productGrid" aria-live="polite"><div class="loading">Loading marketplace…</div></section>
+  <section class="benefits"><article>🚚<b>Clear delivery details</b><span>Sellers share shipping expectations before orders are placed.</span></article><article>🔐<b>Account-based shopping</b><span>Secure sign-in and database access rules protect customer data.</span></article><article>🤝<b>Sell to more people</b><span>Create listings and manage your orders from one place.</span></article></section>
+</main>
+<footer><div class="footbrand">market<span>nest</span></div><p>One marketplace. Thousands of possibilities.</p><small>Independent marketplace · Not affiliated with Amazon</small></footer>
+
+<div class="overlay" id="authModal"><section class="modal"><div class="modalhead"><h2 id="authTitle">Welcome to MD MART</h2><button class="close" data-close="authModal">×</button></div>
+  <div class="tabs"><button class="tab active" data-authmode="signin">Sign in</button><button class="tab" data-authmode="signup">Create account</button></div>
+  <form id="authForm"><label>Email address<input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Password<input id="authPassword" type="password" minlength="8" autocomplete="current-password" required placeholder="At least 8 characters"></label><button class="primary full" id="authSubmit">Sign in</button></form><p class="hint" id="authHint">Use your account to list products and place orders.</p><button class="secondary full" id="signOut" hidden>Sign out</button>
+</section></div>
+
+<div class="overlay" id="sellModal"><section class="modal"><div class="modalhead"><h2>List a product</h2><button class="close" data-close="sellModal">×</button></div>
+<form id="sellForm"><label>Product name<input id="pname" required maxlength="100" placeholder="e.g. Wireless headphones"></label><label>Category<select id="pcategory" required><option>Electronics</option><option>Home</option><option>Fashion</option><option>Beauty</option><option>Sports</option><option>Other</option></select></label><label>Price (₹)<input id="pprice" type="number" min="1" max="10000000" step="1" required placeholder="999"></label><label>Available quantity<input id="pstock" type="number" min="1" max="100000" step="1" required value="1"></label><label>Image URL (optional)<input id="pimage" type="url" placeholder="https://..."></label><label>Description<textarea id="pdesc" maxlength="1000" required placeholder="Condition, size, colour, features…"></textarea></label><button class="primary full" type="submit">Publish listing</button></form><p class="hint">Only list products you are authorised to sell. Listings are public once published.</p></section></div>
+
+<div class="overlay" id="cartModal"><section class="modal wide"><div class="modalhead"><h2>Your cart</h2><button class="close" data-close="cartModal">×</button></div><div id="cartContents"></div><div class="total"><span>Total</span><span id="cartTotal">₹0</span></div><form id="checkoutForm"><h3>Delivery details</h3><label>Full name<input id="shipName" required maxlength="120" placeholder="Name for delivery"></label><label>Phone number<input id="shipPhone" required inputmode="tel" pattern="[0-9+() -]{8,18}" placeholder="Mobile number"></label><label>Full address<textarea id="shipAddress" required maxlength="500" placeholder="House number, street, area, city, PIN code"></textarea></label><label>Payment method<select id="paymentMethod"><option value="cod">Cash on delivery (demo / seller agreement required)</option></select></label><button class="primary full" id="placeOrder" type="submit">Place order</button></form><p class="hint">Online payments are not enabled. Cash-on-delivery orders are recorded in the database; confirm shipping and payment terms with each seller.</p></section></div>
+
+<div class="overlay" id="ordersModal"><section class="modal wide"><div class="modalhead"><h2>My orders</h2><button class="close" data-close="ordersModal">×</button></div><div id="ordersContents"><p class="hint">Sign in to view your orders.</p></div></section></div>
+<div class="overlay" id="messageModal"><section class="modal"><div class="modalhead"><h2 id="messageTitle">MD MART</h2><button class="close" data-close="messageModal">×</button></div><p id="messageText"></p><button class="primary full" data-close="messageModal">OK</button></section></div>
+<script src="/config.js"></script>
+<script type="module" src="/src.js"></script>
+</body></html>
