@@ -1,4 +1,4 @@
--- MarketNest starter schema for Supabase (PostgreSQL)
+-- MD MART starter schema for Supabase (PostgreSQL)
 -- Run this entire file in Supabase Dashboard -> SQL Editor -> New query.
 -- Never put a Supabase service_role key in frontend code.
 
@@ -6,7 +6,7 @@ create extension if not exists pgcrypto;
 
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
-  display_name text not null default 'MarketNest member',
+  display_name text not null default 'MD MART member',
   created_at timestamptz not null default now()
 );
 
@@ -83,7 +83,7 @@ create policy "Buyers can view their order items" on public.order_items for sele
 
 -- Creates an order using server-side product prices and stock, not prices sent by the browser.
 -- Each cart item is {"product_id":"UUID","quantity":1}. Payment is COD only in this free starter.
-create or replace function public.place_marketnest_order(
+create or replace function public.place_MD MART_order(
   p_items jsonb,
   p_shipping jsonb,
   p_payment_method text default 'cod'
@@ -143,8 +143,8 @@ begin
 end;
 $$;
 
-revoke all on function public.place_marketnest_order(jsonb,jsonb,text) from public;
-grant execute on function public.place_marketnest_order(jsonb,jsonb,text) to authenticated;
+revoke all on function public.place_MD MART_order(jsonb,jsonb,text) from public;
+grant execute on function public.place_MD MART_order(jsonb,jsonb,text) to authenticated;
 
 -- Allow authenticated users to create the profile row the first time they sign in.
 grant select, insert, update on public.profiles to authenticated;
